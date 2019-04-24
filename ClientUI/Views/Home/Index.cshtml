@@ -1,0 +1,39 @@
+﻿@{
+    ViewBag.Title = "Place an order";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-5">
+            <div class="card my-5">
+                <div class="card-body">
+                    <form asp-action="PlaceOrder" asp-controller="Home"
+                          data-ajax="true"
+                          data-ajax-method="POST"
+                          data-ajax-mode="replace"
+                          data-ajax-update="#ajaxresultPlaceOrder">
+                        <div id="ajaxresultPlaceOrder">
+                            @await Html.PartialAsync("PlaceOrderPartial")
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+ <div class="col-lg-5">
+            <div class="card my-5">
+                <div class="card-body">
+                    <form  asp-action="PlaceOrderNeedingColor" asp-controller="Home"
+                           data-ajax="true"
+                           data-ajax-method="POST"
+                           data-ajax-mode="replace"
+                           data-ajax-update="#ajaxresult" >
+                        <div id="ajaxresult">
+                            @await Html.PartialAsync("PlaceOrderNeedingColorPartial")
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

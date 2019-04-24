@@ -1,0 +1,56 @@
+﻿@model ClientUI.Controllers.RequestedOrdersPage
+
+@{
+    ViewBag.Title = "Requested Orders";
+}
+
+<h1>Requested Orders</h1>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8">
+
+                    
+                    
+                    
+            <table class="table table-bordered">
+                <thead class="thead-dark">
+                <tr>
+                    <th>Order ID</th>
+                    <th>Item Name</th>
+                    <th>Date Ordered</th>
+                    <th>Order Status</th>
+
+                </tr>
+                </thead>
+                <tbody>
+                @{ var i = 0;}
+                @foreach (var item in Model.PlacedOrderRequests)
+                {
+
+                    <tr @(item.OrderStatus == OrderStatus.NeedsMoreInfo ? "class=table-warning" : "")>
+                        <td>
+                            @Html.ActionLink(item.OrderId,  "ViewOrderRequest", "RequestedOrders", new {orderId=item.OrderId})
+                        </td>
+                        <td>
+                            @item.ItemName
+                        </td>
+                        <td>
+                            @item.Date
+                        </td>
+                        <td>
+                            @Html.DisplayFor(x => x.PlacedOrderRequests[i].OrderStatus)
+                        </td>
+                    </tr>
+                    {i++;}
+                }
+                </tbody>
+            </table>
+                    
+                    
+                    
+                    
+
+        </div>
+    </div>
+</div>

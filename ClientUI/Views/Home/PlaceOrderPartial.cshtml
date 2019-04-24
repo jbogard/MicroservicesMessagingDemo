@@ -1,0 +1,20 @@
+﻿@model dynamic
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+<h1 class="card-title">Place an order</h1>
+@if (@Model != null && @Model.OrderSubmitted == true)
+{
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        ORDER SUBMITTED
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+}
+    <p class="card-text">
+        Click the button to place an order.
+    </p>
+
+    <input type="submit" class="btn btn-lg btn-success" value="Place order for Spatula &raquo;" />
