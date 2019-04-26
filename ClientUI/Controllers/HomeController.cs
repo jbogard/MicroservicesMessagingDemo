@@ -32,19 +32,19 @@ namespace ClientUI.Controllers
 
  
         [HttpPost]
-        public async Task<IActionResult> PlaceOrder()
+        public async Task<IActionResult> PlaceSpatulaOrder()
         {
             var model = await SubmitOrder("Spatula");
 
-            return PartialView("PlaceOrderPartial", model);
+            return PartialView("PlaceSpatulaOrderPartial", model);
         }
 
         [HttpPost]
-        public async Task<IActionResult> PlaceOrderNeedingColor()
+        public async Task<IActionResult> PlaceOvenMittOrder()
         {
             var model = await SubmitOrder("ovenmitt");
 
-            return PartialView("PlaceOrderNeedingColorPartial", model);
+            return PartialView("PlaceOvenMittOrderPartial", model);
         }
 
         private async Task<dynamic> SubmitOrder(string productName)

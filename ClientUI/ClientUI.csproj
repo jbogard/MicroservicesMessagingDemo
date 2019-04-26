@@ -34,7 +34,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Update="Views\Home\PlaceOrderPartial.cshtml">
+    <Content Update="Views\Home\PlaceSpatulaOrderPartial.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
   </ItemGroup>

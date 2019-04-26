@@ -10,10 +10,7 @@ namespace ClientUI.Models
         Submitted,
 
         [Display(Name = "Received")]
-        Received,
-
-        [Display(Name = "Needs More Info")]
-        NeedsMoreInfo,
+        Received
     }
 
     public class PlacedOrderRequest : IEntity
@@ -26,8 +23,5 @@ namespace ClientUI.Models
         public string ItemName { get; set; }
 
         public OrderStatus OrderStatus { get; set; }
-        public bool? ColorRequired { get; set; }
-        public string ColorOptions { get; set; }
-        public string ColorSelected { get; set; }
     }
 }

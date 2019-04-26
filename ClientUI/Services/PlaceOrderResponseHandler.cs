@@ -14,12 +14,12 @@ namespace ClientUI.Services
     public class PlaceOrderResponseHandler : IHandleMessages<PlaceOrderResponse>
     {
         private readonly StoreDbContext _dbContext;
-        Lazy<IHubContext<SubmissionNotificationHub>> lazyHub;
+        private readonly Lazy<IHubContext<SubmissionNotificationHub>> _lazyHub;
 
         public PlaceOrderResponseHandler(StoreDbContext dbContext, Lazy<IHubContext<SubmissionNotificationHub>> lazyHub)
         {
             _dbContext = dbContext;
-            this.lazyHub = lazyHub;
+            _lazyHub = lazyHub;
         }
 
         public async Task Handle(PlaceOrderResponse message, IMessageHandlerContext context)
@@ -34,22 +34,10 @@ namespace ClientUI.Services
                 originalRequest.OrderStatus = OrderStatus.Received;
                 notificationMessage = "Order " + message.OrderId + " Received";
             }
-            else 
-            {
-                originalRequest.OrderStatus = OrderStatus.NeedsMoreInfo;
-                if (message.NeedsColor)
-                {
-                    originalRequest.ColorRequired = true;
-                    originalRequest.ColorOptions = string.Join(",", message.ColorChoices);
 
-                    notificationMessage = "Order " + message.OrderId + " needs a color choice";
-                }
-            }
             await _dbContext.SaveChangesAsync();
 
-            await lazyHub.Value.Clients.All.SendAsync("ReceiveMessage", notificationMessage);
-
-
+            await _lazyHub.Value.Clients.All.SendAsync("ReceiveMessage", notificationMessage);
         }
     }
 }

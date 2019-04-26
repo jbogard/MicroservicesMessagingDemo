@@ -25,41 +25,27 @@ namespace Sales
         public async Task Handle(PlaceOrder message, IMessageHandlerContext context)
         {
             Log.Info($"Received PlaceOrder, OrderId = {message.OrderId}, " +
-                     $"OrderDate = {message.OrderDate}, ItemName = {message.ItemName}, Color={message.Color}");
+                     $"OrderDate = {message.OrderDate}, ItemName = {message.ItemName}");
 
-
-            var orderResponse = new PlaceOrderResponse {OrderId = message.OrderId};
-            var order = new SubmittedOrder { OrderDate = message.OrderDate, OrderId = message.OrderId };
-            if (message.ItemName == "ovenmitt")
-            {
-                if (message.Color == null)
-                {
-                    await PopulateMissingColorResponse(orderResponse);
-                    await context.Reply(orderResponse);
-                    return;
-                }
-
-                var selectedColor = await _dbContext.Colors.Where(x => x.Name == message.Color).FirstAsync();
-                order.Color = selectedColor;
-                await _dbContext.SubmittedOrders.AddAsync(order);
-            }
+            var order = new SubmittedOrder {OrderDate = message.OrderDate, OrderId = message.OrderId};
 
             await _dbContext.SubmittedOrders.AddAsync(order);
             await _dbContext.SaveChangesAsync();
 
-            orderResponse.StatusCompleted = true;
-
+            var orderResponse = new PlaceOrderResponse
+            {
+                OrderId = message.OrderId,
+                StatusCompleted = true
+            };
 
             await context.Reply(orderResponse);
-            await context.Publish(new OrderCompleted {OrderId = message.OrderId});
-        }
 
-        private async Task PopulateMissingColorResponse(PlaceOrderResponse orderResponse)
-        {
-            orderResponse.NeedsColor = true;
-            orderResponse.StatusCompleted = false;
+            var orderCompleted = new OrderCompleted
+            {
+                OrderId = message.OrderId
+            };
 
-            orderResponse.ColorChoices = await _dbContext.Colors.Select(x => x.Name).ToArrayAsync(); ;
+            await context.Publish(orderCompleted);
         }
     }
 }

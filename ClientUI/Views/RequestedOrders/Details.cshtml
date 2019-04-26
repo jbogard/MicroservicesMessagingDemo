@@ -1,0 +1,41 @@
+﻿@model ClientUI.Controllers.RequestedOrdersDetailsModel
+@{
+    ViewBag.Title = "Requested Order";
+}
+
+<h1>Requested Order</h1>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm">
+            Status
+        </div>
+        <div class="col-sm" role="alert">
+            @Html.DisplayFor(x => x.OrderStatus)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm">
+            Order ID
+        </div>
+        <div class="col-sm">
+            @Model.OrderId
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm">
+            Item Name
+        </div>
+        <div class="col-sm">
+            @Model.ItemName
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm">
+            Date Ordered
+        </div>
+        <div class="col-sm">
+            @Model.Date
+        </div>
+    </div>
+</div>

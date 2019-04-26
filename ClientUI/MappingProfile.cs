@@ -8,7 +8,7 @@ namespace ClientUI
     {
         public MappingProfile()
         {
-            CreateMap<PlacedOrderRequest, UpdateOrderCommand>();
+            CreateMap<PlacedOrderRequest, RequestedOrdersDetailsModel>();
         }
     }
 }

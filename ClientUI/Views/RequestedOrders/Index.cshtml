@@ -28,9 +28,9 @@
                 @foreach (var item in Model.PlacedOrderRequests)
                 {
 
-                    <tr @(item.OrderStatus == OrderStatus.NeedsMoreInfo ? "class=table-warning" : "")>
+                    <tr>
                         <td>
-                            @Html.ActionLink(item.OrderId,  "ViewOrderRequest", "RequestedOrders", new {orderId=item.OrderId})
+                            @Html.ActionLink(item.OrderId,  "Details", "RequestedOrders", new {orderId=item.OrderId})
                         </td>
                         <td>
                             @item.ItemName
