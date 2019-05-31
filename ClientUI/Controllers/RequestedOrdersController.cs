@@ -39,7 +39,7 @@ namespace ClientUI.Controllers
         {
             var order = await _dbContext.PlacedOrderRequests
                 .Where(x => x.OrderId == orderId)
-                .ProjectTo<RequestedOrdersDetailsModel>(_mapper)
+                .ProjectTo<RequestedOrdersDetailsModel>(_mapper.ConfigurationProvider)
                 .FirstAsync();
 
             return View(order);

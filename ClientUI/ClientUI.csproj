@@ -25,11 +25,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Pages\" />
-    <Folder Include="Views\Shared\EditorTemplates\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\Messages\Sales.Messages.csproj" />
   </ItemGroup>
 

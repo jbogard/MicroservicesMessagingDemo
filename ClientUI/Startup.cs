@@ -44,7 +44,7 @@ namespace ClientUI
 
             services.AddLogging(loggingBuilder => loggingBuilder.AddConsole());
 
-            services.AddAutoMapper();
+            services.AddAutoMapper(typeof(Startup));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddSignalR(hubOptions => { hubOptions.EnableDetailedErrors = true; });
 
