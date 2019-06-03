@@ -49,18 +49,22 @@ namespace ClientUI.Controllers
 
         private async Task<dynamic> SubmitOrder(string productName)
         {
-            var orderId = Guid.NewGuid().ToString().Substring(0, 8);
+            var placeOrderRequest = await SaveOrderRequest(productName);
 
-            var command = new PlaceOrder
-            {
-                OrderId = orderId,
-                OrderDate = DateTime.Now,
-                ItemName = productName
-            };
+            await SendPlaceOrderCommand(productName, placeOrderRequest);
+
+            var model = BuildResponseModel(placeOrderRequest);
+
+            return model;
+        }
+
+        private async Task<PlacedOrderRequest> SaveOrderRequest(string productName)
+        {
+            var orderId = Guid.NewGuid().ToString().Substring(0, 8);
 
             var placeOrderRequest = new PlacedOrderRequest
             {
-                Date = command.OrderDate,
+                Date = DateTime.Now,
                 OrderId = orderId,
                 OrderStatus = OrderStatus.Submitted,
                 ItemName = productName
@@ -69,16 +73,30 @@ namespace ClientUI.Controllers
             await _dbcontext.PlacedOrderRequests.AddAsync(placeOrderRequest);
             await _dbcontext.SaveChangesAsync();
 
+            return placeOrderRequest;
+        }
+
+        private async Task SendPlaceOrderCommand(string productName, PlacedOrderRequest placeOrderRequest)
+        {
+            var command = new PlaceOrder
+            {
+                OrderId = placeOrderRequest.OrderId,
+                OrderDate = placeOrderRequest.Date,
+                ItemName = productName
+            };
+
             // Send the command to submit the order
             await _endpointInstance.Send(command)
                 .ConfigureAwait(false);
+        }
 
+        private static dynamic BuildResponseModel(PlacedOrderRequest placeOrderRequest)
+        {
             dynamic model = new ExpandoObject();
-            model.OrderId = orderId;
+            model.OrderId = placeOrderRequest.OrderId;
             model.MessagesSent = Interlocked.Increment(ref messagesSent);
             model.OrderSubmitted = true;
             return model;
         }
-
     }
 }

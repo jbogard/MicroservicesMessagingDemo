@@ -16,7 +16,7 @@ namespace Sales
             var services = new ServiceCollection().AddLogging().AddScoped<PlaceOrderHandler>();
             services.AddDbContext<OrdersDbContext>();
 
-            var endpointConfiguration = new EndpointConfiguration("Sales");
+            var endpointConfiguration = new EndpointConfiguration("MicroservicesMessagingDemo.Sales");
 
             var transport = endpointConfiguration
                 .UseTransport<RabbitMQTransport>()

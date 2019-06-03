@@ -51,7 +51,7 @@ namespace ClientUI
 
             services.AddSingleton(new Lazy<IHubContext<SubmissionNotificationHub>>(() => _hub));
 
-            services.AddNServiceBus("ClientUI");
+            services.AddNServiceBus("MicroservicesMessagingDemo.ClientUI");
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -110,7 +110,7 @@ namespace ClientUI
 
         private static void DoCustomRouting(RoutingSettings<RabbitMQTransport> routing)
         {
-            routing.RouteToEndpoint(typeof(PlaceOrder), "Sales");
+            routing.RouteToEndpoint(typeof(PlaceOrder), "MicroservicesMessagingDemo.Sales");
         }
     }
 }

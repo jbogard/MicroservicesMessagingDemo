@@ -10,7 +10,7 @@ namespace Billing
         {
             Console.Title = "Billing";
 
-            var endpointConfiguration = new EndpointConfiguration("Billing");
+            var endpointConfiguration = new EndpointConfiguration("MicroservicesMessagingDemo.Billing");
 
             var transport = endpointConfiguration
                 .UseTransport<RabbitMQTransport>()

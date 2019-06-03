@@ -12,7 +12,7 @@ namespace Shipping
         {
             Console.Title = "Shipping";
 
-            var endpointConfiguration = new EndpointConfiguration("Shipping");
+            var endpointConfiguration = new EndpointConfiguration("MicroservicesMessagingDemo.Shipping");
 
             var transport = endpointConfiguration
                 .UseTransport<RabbitMQTransport>()
