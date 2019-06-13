@@ -21,7 +21,7 @@ namespace Shipping
             endpointConfiguration.EnableInstallers();
             var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
             persistence.SqlDialect<SqlDialect.MsSqlServer>();
-            persistence.ConnectionBuilder(() => new SqlConnection(@"Data Source=.\SqlExpress;Initial Catalog=ShippingDb;Integrated Security=True"));
+            persistence.ConnectionBuilder(() => new SqlConnection(@"Data Source=(localdb)\\mssqllocaldb;Initial Catalog=ShippingDb;Integrated Security=True"));
 
             var endpointInstance = await Endpoint.Start(endpointConfiguration);
 
