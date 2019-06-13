@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.168
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.156
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClientUI", "ClientUI\ClientUI.csproj", "{FE43A59A-76B5-4B6F-87F5-A8EB4A4CF4F2}"
 EndProject
@@ -9,19 +9,21 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sales", "Sales\Sales.csproj
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sales.Messages", "Messages\Sales.Messages.csproj", "{EA59869D-071F-4957-9E15-3F65686D539D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Billing", "Billing\Billing.csproj", "{6842296C-F7D3-4BB1-B77B-1332C5283C2A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Billing", "Billing\Billing.csproj", "{6842296C-F7D3-4BB1-B77B-1332C5283C2A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shipping", "Shipping\Shipping.csproj", "{3F257830-5664-43E2-81E7-2AE30A8A5500}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shipping", "Shipping\Shipping.csproj", "{3F257830-5664-43E2-81E7-2AE30A8A5500}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Billing.Events", "Billing.Messages\Billing.Events.csproj", "{C8BEF73D-9215-4297-A61D-9F88A5BCBAC1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Billing.Events", "Billing.Messages\Billing.Events.csproj", "{C8BEF73D-9215-4297-A61D-9F88A5BCBAC1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sales.Events", "Sales.Events\Sales.Events.csproj", "{A4568512-F104-4B3F-B8CC-A73FF8ED0772}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sales.Events", "Sales.Events\Sales.Events.csproj", "{A4568512-F104-4B3F-B8CC-A73FF8ED0772}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BillingBC", "BillingBC", "{0352D90B-54FA-4DBE-B8E2-A442502EBBC0}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SalesBC", "SalesBC", "{D78C1E4D-510A-488E-9E7D-028A75FF6F58}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ShippingBC", "ShippingBC", "{DF0E1D2B-23EF-476B-8800-CB021053A813}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shipping.Events", "Shipping.Events\Shipping.Events.csproj", "{CCA7F54B-BEFB-49F6-8C43-B2287FA21BAA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,6 +59,10 @@ Global
 		{A4568512-F104-4B3F-B8CC-A73FF8ED0772}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A4568512-F104-4B3F-B8CC-A73FF8ED0772}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A4568512-F104-4B3F-B8CC-A73FF8ED0772}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CCA7F54B-BEFB-49F6-8C43-B2287FA21BAA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CCA7F54B-BEFB-49F6-8C43-B2287FA21BAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CCA7F54B-BEFB-49F6-8C43-B2287FA21BAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CCA7F54B-BEFB-49F6-8C43-B2287FA21BAA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -68,6 +74,7 @@ Global
 		{3F257830-5664-43E2-81E7-2AE30A8A5500} = {DF0E1D2B-23EF-476B-8800-CB021053A813}
 		{C8BEF73D-9215-4297-A61D-9F88A5BCBAC1} = {0352D90B-54FA-4DBE-B8E2-A442502EBBC0}
 		{A4568512-F104-4B3F-B8CC-A73FF8ED0772} = {D78C1E4D-510A-488E-9E7D-028A75FF6F58}
+		{CCA7F54B-BEFB-49F6-8C43-B2287FA21BAA} = {DF0E1D2B-23EF-476B-8800-CB021053A813}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {29BCCE07-00B7-47E8-BC6D-528A4AF66880}

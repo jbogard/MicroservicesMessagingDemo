@@ -3,6 +3,7 @@ using Billing.Events;
 using NServiceBus;
 using NServiceBus.Logging;
 using Sales.Events;
+using Shipping.Events;
 
 namespace Shipping
 {
@@ -22,8 +23,12 @@ namespace Shipping
 
         protected override void ConfigureHowToFindSaga(SagaPropertyMapper<ShippingSagaData> mapper)
         {
-            mapper.ConfigureMapping<OrderCompleted>(m => m.OrderId).ToSaga(s => s.OrderId);
-            mapper.ConfigureMapping<OrderBilled>(m => m.OrderId).ToSaga(s => s.OrderId);
+            mapper
+                .ConfigureMapping<OrderCompleted>(m => m.OrderId)
+                .ToSaga(s => s.OrderId);
+            mapper
+                .ConfigureMapping<OrderBilled>(m => m.OrderId)
+                .ToSaga(s => s.OrderId);
         }
 
         public Task Handle(OrderCompleted message, IMessageHandlerContext context)
@@ -32,7 +37,7 @@ namespace Shipping
 
             Data.IsOrderCompleted = true;
 
-            return ProcessOrder();
+            return ProcessOrder(context);
         }
 
         public Task Handle(OrderBilled message, IMessageHandlerContext context)
@@ -41,18 +46,19 @@ namespace Shipping
 
             Data.IsOrderBilled = true;
 
-            return ProcessOrder();
+            return ProcessOrder(context);
         }
 
-        private Task ProcessOrder()
+        private async Task ProcessOrder(IMessageHandlerContext context)
         {
             if (Data.IsOrderCompleted && Data.IsOrderBilled)
             {
                 Log.Info($"Shipping Order {Data.OrderId}");
+
+                await context.Publish(new OrderShipped {OrderId = Data.OrderId});
+
                 MarkAsComplete();
             }
-
-            return Task.CompletedTask;
         }
     }
 }

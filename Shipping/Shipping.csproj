@@ -7,13 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="NServiceBus.Persistence.Sql" Version="4.4.0" />
-    <PackageReference Include="NServiceBus.RabbitMQ" Version="5.0.2" />
+    <PackageReference Include="NServiceBus.Persistence.Sql" Version="4.5.1" />
+    <PackageReference Include="NServiceBus.RabbitMQ" Version="5.1.2" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Billing.Messages\Billing.Events.csproj" />
     <ProjectReference Include="..\Sales.Events\Sales.Events.csproj" />
+    <ProjectReference Include="..\Shipping.Events\Shipping.Events.csproj" />
   </ItemGroup>
 
 </Project>

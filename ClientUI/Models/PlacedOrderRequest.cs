@@ -10,7 +10,10 @@ namespace ClientUI.Models
         Submitted,
 
         [Display(Name = "Received")]
-        Received
+        Received,
+
+        [Display(Name = "Shipped")]
+        Shipped
     }
 
     public class PlacedOrderRequest : IEntity

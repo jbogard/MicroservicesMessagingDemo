@@ -24,6 +24,8 @@ namespace Sales
 
         public async Task Handle(PlaceOrder message, IMessageHandlerContext context)
         {
+            #region Demo 2 - Request/Response
+
             Log.Info($"Received PlaceOrder, OrderId = {message.OrderId}, " +
                      $"OrderDate = {message.OrderDate}, ItemName = {message.ItemName}");
 
@@ -40,12 +42,18 @@ namespace Sales
 
             await context.Reply(orderResponse);
 
+            #endregion
+
+            #region Demo 3 - Pub/Sub
+
             var orderCompleted = new OrderCompleted
             {
                 OrderId = message.OrderId
             };
 
             await context.Publish(orderCompleted);
+
+            #endregion
         }
     }
 }

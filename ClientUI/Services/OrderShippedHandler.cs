@@ -4,30 +4,27 @@ using ClientUI.Data;
 using ClientUI.Models;
 using Microsoft.EntityFrameworkCore;
 using NServiceBus;
-using Sales.Messages;
+using Shipping.Events;
 
 namespace ClientUI.Services
 {
-    public class PlaceOrderResponseHandler : IHandleMessages<PlaceOrderResponse>
+    public class OrderShippedHandler : IHandleMessages<OrderShipped>
     {
         private readonly StoreDbContext _dbContext;
 
-        public PlaceOrderResponseHandler(StoreDbContext dbContext)
+        public OrderShippedHandler(StoreDbContext dbContext)
         {
             _dbContext = dbContext;
         }
 
-        public async Task Handle(PlaceOrderResponse message, IMessageHandlerContext context)
+        public async Task Handle(OrderShipped message, IMessageHandlerContext context)
         {
             var originalRequest = await _dbContext
                 .PlacedOrderRequests
                 .Where(x => x.OrderId == message.OrderId)
                 .FirstAsync();
 
-            if (message.StatusCompleted)
-            {
-                originalRequest.OrderStatus = OrderStatus.Received;
-            }
+            originalRequest.OrderStatus = OrderStatus.Shipped;
 
             await _dbContext.SaveChangesAsync();
         }
